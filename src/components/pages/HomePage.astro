@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import site from '../../data/site.json';
+import home from '../../data/home.json';
+import stats from '../../data/stats.json';
+import experience from '../../data/experience.json';
+import gallery from '../../data/gallery.json';
+import { labels, routeFor, tr, type Lang } from '../../lib/i18n';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const l = labels[lang];
+const role = lang === 'en' ? site.role_en : site.role_id;
+const featuredGallery = gallery.filter((item) => item.published && item.featured).slice(0, 2);
+const selectedExperience = experience.filter((item) => ['2008–Present', '2023', 'May 2026–Present'].includes(item.year));
+const whatsappText = lang === 'en' ? 'Hello, I would like to discuss a possible collaboration.' : 'Halo, saya ingin mendiskusikan kemungkinan kolaborasi.';
+const whatsapp = `https://wa.me/${site.phone_whatsapp}?text=${encodeURIComponent(whatsappText)}`;
+---
+<BaseLayout
+  lang={lang}
+  title={lang === 'en' ? 'English Lecturer & Educator' : 'Dosen Bahasa Inggris & Pendidik'}
+  description={tr(home, 'intro', lang)}
+>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">{tr(home, 'eyebrow', lang)}</p>
+        <h1 class="display">{tr(home, 'headline', lang)}</h1>
+        <p class="lead">{tr(home, 'intro', lang)}</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href={routeFor(lang, 'about')}>{l.learnMore}</a>
+          <a class="btn" href={routeFor(lang, 'collaboration')}>{l.collaborate}</a>
+          <a class="btn btn-soft" href={site.cv_path} download>{l.downloadCv}</a>
+        </div>
+      </div>
+      <div class="hero-visual reveal">
+        <span class="hero-orbit" aria-hidden="true"></span>
+        <div class="hero-photo-shell">
+          <img src={site.profile_image} alt={lang === 'en' ? `Portrait of ${site.name}` : `Potret ${site.name}`} />
+        </div>
+        <div class="hero-note">
+          <p>“{tr(home, 'quote', lang)}”</p>
+          <span>{site.short_name} · {role}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container stats-grid reveal">
+      {stats.map((item) => (
+        <article class="stat">
+          <strong>{item.value}</strong>
+          <span>{tr(item, 'label', lang)}</span>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split split-wide">
+      <div class="sticky-copy reveal">
+        <div class="kicker-line"></div>
+        <p class="eyebrow">{lang === 'en' ? 'Professional story' : 'Perjalanan profesional'}</p>
+        <h2 class="section-title">{tr(home, 'section_title', lang)}</h2>
+      </div>
+      <div class="prose reveal">
+        <p>{tr(home, 'section_text', lang)}</p>
+        <div class="cards cards-2" style="margin-top: 34px;">
+          {selectedExperience.map((item, index) => (
+            <article class="card">
+              <span class="icon-number">0{index + 1}</span>
+              <p class="meta">{item.year}</p>
+              <h3 class="card-title">{tr(item, 'title', lang)}</h3>
+              <p>{tr(item, 'summary', lang)}</p>
+            </article>
+          ))}
+        </div>
+        <div style="margin-top: 26px;"><a class="text-link" href={routeFor(lang, 'experience')}>{lang === 'en' ? 'See the full professional journey' : 'Lihat perjalanan profesional lengkap'}</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container feature-band reveal">
+      <p class="eyebrow">{lang === 'en' ? 'Academic recognition' : 'Pengakuan akademik'}</p>
+      <h2 class="section-title">{tr(home, 'achievement_title', lang)}</h2>
+      <p>{tr(home, 'achievement_text', lang)}</p>
+      <div class="btn-row">
+        <a class="btn" href={routeFor(lang, 'gallery')}>{lang === 'en' ? 'View documentation' : 'Lihat dokumentasi'}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div class="reveal">
+        <p class="eyebrow">Fluentic</p>
+        <h2 class="section-title">{tr(home, 'fluentic_title', lang)}</h2>
+        <p class="lead">{tr(home, 'fluentic_text', lang)}</p>
+        <div class="btn-row"><a class="btn btn-primary" href={routeFor(lang, 'fluentic')}>{lang === 'en' ? 'Discover Fluentic' : 'Kenali Fluentic'}</a></div>
+      </div>
+      <div class="media-grid reveal">
+        {featuredGallery.map((item) => (
+          <article class="media-card">
+            <figure><img src={item.image} alt={tr(item, 'alt', lang)} /></figure>
+            <div class="media-card-body">
+              <p class="meta">{item.year} · {item.location}</p>
+              <h3>{tr(item, 'title', lang)}</h3>
+              <p>{tr(item, 'caption', lang)}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="narrow feature-band reveal" style="text-align:center;">
+      <p class="eyebrow">{lang === 'en' ? 'Collaboration' : 'Kolaborasi'}</p>
+      <h2 class="section-title">{lang === 'en' ? 'Have an educational idea worth developing together?' : 'Punya gagasan pendidikan yang layak dikembangkan bersama?'}</h2>
+      <p style="margin-inline:auto;">{lang === 'en' ? 'Open to language training, teacher development, translation, interpreting, and community empowerment initiatives.' : 'Terbuka untuk pelatihan bahasa, pengembangan guru, penerjemahan, interpretasi, dan inisiatif pemberdayaan komunitas.'}</p>
+      <div class="btn-row" style="justify-content:center;">
+        <a class="btn" href={routeFor(lang, 'contact')}>{l.contact}</a>
+        <a class="btn" href={whatsapp} target="_blank" rel="noreferrer">WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

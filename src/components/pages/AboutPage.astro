@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../PageHero.astro';
+import about from '../../data/about.json';
+import education from '../../data/education.json';
+import values from '../../data/values.json';
+import site from '../../data/site.json';
+import { tr, type Lang } from '../../lib/i18n';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+---
+<BaseLayout lang={lang} route="about" title={lang === 'en' ? 'About' : 'Tentang'} description={tr(about, 'lead', lang)}>
+  <PageHero eyebrow={lang === 'en' ? 'About Komang Ayu' : 'Tentang Komang Ayu'} title={tr(about, 'title', lang)} lead={tr(about, 'lead', lang)} />
+  <section class="section">
+    <div class="container split split-wide">
+      <div class="sticky-copy reveal">
+        <img src={site.profile_image} alt={lang === 'en' ? `Portrait of ${site.name}` : `Potret ${site.name}`} style="border-radius:var(--radius-lg); box-shadow:var(--shadow);" />
+      </div>
+      <div class="prose reveal">
+        <p>{tr(about, 'story_1', lang)}</p>
+        <p>{tr(about, 'story_2', lang)}</p>
+        <p>{tr(about, 'story_3', lang)}</p>
+      </div>
+    </div>
+  </section>
+  <section class="section-sm">
+    <div class="container feature-band reveal">
+      <p class="eyebrow">McGill University · 2005</p>
+      <h2 class="section-title">{tr(about, 'mcgill_title', lang)}</h2>
+      <p>{tr(about, 'mcgill_text', lang)}</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container split">
+      <div class="reveal">
+        <p class="eyebrow">{lang === 'en' ? 'Academic foundation' : 'Landasan akademik'}</p>
+        <h2 class="section-title">{lang === 'en' ? 'Education' : 'Pendidikan'}</h2>
+      </div>
+      <div class="timeline reveal">
+        {education.map((item) => (
+          <article class="timeline-item">
+            <div class="timeline-year">{item.year}</div>
+            <div class="timeline-body">
+              <h3>{tr(item, 'degree', lang)}</h3>
+              <p class="org">{item.institution}</p>
+              <p>{tr(item, 'detail', lang)}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section-sm">
+    <div class="container">
+      <p class="eyebrow">{lang === 'en' ? 'Working values' : 'Nilai kerja'}</p>
+      <h2 class="section-title">{tr(about, 'values_title', lang)}</h2>
+      <div class="cards" style="margin-top:34px;">
+        {values.map((item, index) => (
+          <article class="card reveal">
+            <span class="icon-number">0{index + 1}</span>
+            <h3 class="card-title">{tr(item, 'title', lang)}</h3>
+            <p>{tr(item, 'text', lang)}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

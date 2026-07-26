@@ -1,0 +1,49 @@
+---
+import site from '../data/site.json';
+import { labels, routeFor, type Lang } from '../lib/i18n';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const l = labels[lang];
+const year = new Date().getFullYear();
+const whatsappText = lang === 'en'
+  ? 'Hello, I would like to discuss a possible collaboration.'
+  : 'Halo, saya ingin mendiskusikan kemungkinan kolaborasi.';
+const whatsapp = `https://wa.me/${site.phone_whatsapp}?text=${encodeURIComponent(whatsappText)}`;
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href={routeFor(lang)}>
+          <span class="brand-mark">KA</span>
+          <span class="brand-copy"><strong>{site.name}</strong><span>{lang === 'en' ? site.role_en : site.role_id}</span></span>
+        </a>
+        <p>{lang === 'en'
+          ? 'Language education grounded in personal encouragement, critical thinking, and meaningful participation.'
+          : 'Pendidikan bahasa yang berlandaskan dorongan personal, berpikir kritis, dan partisipasi yang bermakna.'}</p>
+      </div>
+      <div>
+        <h2 class="footer-heading">{lang === 'en' ? 'Explore' : 'Jelajahi'}</h2>
+        <div class="footer-links">
+          <a href={routeFor(lang, 'about')}>{l.about}</a>
+          <a href={routeFor(lang, 'teaching')}>{l.teaching}</a>
+          <a href={routeFor(lang, 'experience')}>{l.experience}</a>
+          <a href={routeFor(lang, 'gallery')}>{l.gallery}</a>
+        </div>
+      </div>
+      <div>
+        <h2 class="footer-heading">{lang === 'en' ? 'Connect' : 'Terhubung'}</h2>
+        <div class="footer-links">
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+          <a href={whatsapp} target="_blank" rel="noreferrer">WhatsApp</a>
+          <a href={site.cv_path} download>{l.downloadCv}</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© {year} {site.name}</span>
+      <span>{lang === 'en' ? 'Built as a living academic portfolio.' : 'Dibangun sebagai portofolio akademik yang terus berkembang.'}</span>
+    </div>
+  </div>
+</footer>

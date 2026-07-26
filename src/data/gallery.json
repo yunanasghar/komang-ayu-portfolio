@@ -1,0 +1,62 @@
+[
+  {
+    "title_en": "Summer course at McGill University",
+    "title_id": "Summer course di McGill University",
+    "year": "2005",
+    "location": "Montreal, Canada",
+    "role_en": "Graduate student and summer course participant",
+    "role_id": "Mahasiswa pascasarjana dan peserta summer course",
+    "caption_en": "A formative academic experience focused on research methodology, thesis development, and cross-cultural exchange.",
+    "caption_id": "Pengalaman akademik yang membentuk, dengan fokus pada metodologi penelitian, pengembangan tesis, dan pertukaran lintas budaya.",
+    "alt_en": "Placeholder for Komang Ayu's photograph at McGill University in 2005",
+    "alt_id": "Placeholder foto Komang Ayu di McGill University pada 2005",
+    "image": "/media/mcgill-2005.webp",
+    "featured": true,
+    "published": true
+  },
+  {
+    "title_en": "English Language Teacher Training",
+    "title_id": "English Language Teacher Training",
+    "year": "2023",
+    "location": "Faculty of Adab, UIN Sunan Kalijaga",
+    "role_en": "Trainer",
+    "role_id": "Trainer",
+    "caption_en": "Facilitating professional learning for school teachers through English for teaching and professional knowledge.",
+    "caption_id": "Memfasilitasi pembelajaran profesional bagi guru sekolah melalui English for teaching dan professional knowledge.",
+    "alt_en": "Placeholder for a teacher training session led by Komang Ayu",
+    "alt_id": "Placeholder sesi pelatihan guru yang dipandu Komang Ayu",
+    "image": "/media/teacher-training-2023.webp",
+    "featured": true,
+    "published": true
+  },
+  {
+    "title_en": "Fluentic conversation class",
+    "title_id": "Kelas percakapan Fluentic",
+    "year": "2026",
+    "location": "Yogyakarta",
+    "role_en": "Founder and facilitator",
+    "role_id": "Pendiri dan fasilitator",
+    "caption_en": "University learners practising English through guided conversation, peer learning, and cultural exchange.",
+    "caption_id": "Mahasiswa berlatih Bahasa Inggris melalui percakapan terbimbing, pembelajaran antarteman, dan pertukaran budaya.",
+    "alt_en": "Placeholder for a Fluentic English conversation class",
+    "alt_id": "Placeholder kelas percakapan Bahasa Inggris Fluentic",
+    "image": "/media/fluentic-conversation-class.webp",
+    "featured": true,
+    "published": true
+  },
+  {
+    "title_en": "Academic excellence award",
+    "title_id": "Penghargaan academic excellence",
+    "year": "July 2025",
+    "location": "P2B UIN Sunan Kalijaga",
+    "role_en": "Award recipient",
+    "role_id": "Penerima penghargaan",
+    "caption_en": "Recognised as the English lecturer with the highest improvement in student training outcomes, reaching 91%.",
+    "caption_id": "Menerima penghargaan sebagai dosen Bahasa Inggris dengan peningkatan hasil pelatihan mahasiswa tertinggi, mencapai 91%.",
+    "alt_en": "Placeholder for Komang Ayu's academic excellence certificate",
+    "alt_id": "Placeholder sertifikat penghargaan akademik Komang Ayu",
+    "image": "/media/award-p2b-2025.webp",
+    "featured": true,
+    "published": true
+  }
+]

@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../PageHero.astro';
+import collaboration from '../../data/collaboration.json';
+import services from '../../data/services.json';
+import site from '../../data/site.json';
+import { routeFor, tr, type Lang } from '../../lib/i18n';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const message = lang === 'en' ? 'Hello, I would like to discuss a professional collaboration.' : 'Halo, saya ingin mendiskusikan kolaborasi profesional.';
+---
+<BaseLayout lang={lang} route="collaboration" title={lang === 'en' ? 'Collaboration' : 'Kolaborasi'} description={tr(collaboration, 'lead', lang)}>
+  <PageHero eyebrow={lang === 'en' ? 'Work together' : 'Berkarya bersama'} title={tr(collaboration, 'title', lang)} lead={tr(collaboration, 'lead', lang)} />
+  <section class="section">
+    <div class="container cards cards-2">
+      {services.map((item, index) => (
+        <article class="card reveal">
+          <span class="icon-number">0{index + 1}</span>
+          <h2 class="card-title">{tr(item, 'title', lang)}</h2>
+          <p>{tr(item, 'text', lang)}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+  <section class="section-sm">
+    <div class="narrow feature-band reveal" style="text-align:center;">
+      <p class="eyebrow">{lang === 'en' ? 'First conversation' : 'Percakapan pertama'}</p>
+      <h2 class="section-title">{tr(collaboration, 'closing', lang)}</h2>
+      <div class="btn-row" style="justify-content:center;"><a class="btn" href={routeFor(lang, 'contact')}>{lang === 'en' ? 'Send a project brief' : 'Kirim gambaran proyek'}</a><a class="btn" href={`https://wa.me/${site.phone_whatsapp}?text=${encodeURIComponent(message)}`} target="_blank" rel="noreferrer">WhatsApp</a></div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,46 @@
+[
+  {
+    "type_en": "Book",
+    "type_id": "Buku",
+    "title": "Fun Vocabulary Games",
+    "year": "2023",
+    "description_en": "A practical resource designed to make vocabulary learning more active, memorable, and enjoyable.",
+    "description_id": "Sumber belajar praktis yang dirancang agar pembelajaran kosakata menjadi lebih aktif, mudah diingat, dan menyenangkan.",
+    "image": "/media/fun-vocabulary-games-cover.webp",
+    "link": "",
+    "featured": true
+  },
+  {
+    "type_en": "Master's Thesis",
+    "type_id": "Tesis",
+    "title": "GENUINE or PSEUDO PARTICIPATION (A Study of Community Participation at Komite Persiapan Kabupaten Persatuan Petani Mandiri (KPK PPM) in Wonosobo, Central Java, Indonesia)",
+    "year": "2006",
+    "description_en": "Research completed as part of the Master of Social Work international joint program.",
+    "description_id": "Penelitian yang diselesaikan sebagai bagian dari program internasional Master of Social Work.",
+    "image": "/media/tesis-cover.webp",
+    "link": "",
+    "featured": false
+  },
+  {
+    "type_en": "Undergraduate Thesis",
+    "type_id": "Skripsi",
+    "title": "Makna Sosisal Sesajen Dalam Masyarakat Hindu di Bali",
+    "year": "2003",
+    "description_en": "Undergraduate research in Sociology at Universitas Gadjah Mada.",
+    "description_id": "Penelitian sarjana dalam bidang Sosiologi di Universitas Gadjah Mada.",
+    "image": "",
+    "link": "",
+    "featured": false
+  },
+  {
+    "type_en": "Professional Translation",
+    "type_id": "Penerjemahan Profesional",
+    "title": "Academic and professional document translation",
+    "year": "2005–Present",
+    "description_en": "Indonesian–English and English–Indonesian translation for certificates, transcripts, journal articles, and other academic or professional documents.",
+    "description_id": "Penerjemahan Indonesia–Inggris dan Inggris–Indonesia untuk ijazah, transkrip, artikel jurnal, serta dokumen akademik dan profesional lainnya.",
+    "image": "",
+    "link": "",
+    "featured": false
+  }
+]

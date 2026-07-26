@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../PageHero.astro';
+import fluentic from '../../data/fluentic.json';
+import programs from '../../data/programs.json';
+import site from '../../data/site.json';
+import { routeFor, tr, type Lang } from '../../lib/i18n';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+---
+<BaseLayout lang={lang} route="fluentic" title="Fluentic" description={tr(fluentic, 'lead', lang)}>
+  <PageHero eyebrow="Fluentic English Community & Training Center" title={tr(fluentic, 'title', lang)} lead={tr(fluentic, 'lead', lang)} />
+  <section class="section">
+    <div class="container split">
+      <div class="prose reveal">
+        <p class="eyebrow">{lang === 'en' ? 'The beginning' : 'Awal perjalanan'}</p>
+        <h2 class="section-title">March 2026</h2>
+        <p>{tr(fluentic, 'origin', lang)}</p>
+      </div>
+      <div class="prose reveal">
+        <p class="eyebrow">{lang === 'en' ? 'The next chapter' : 'Babak berikutnya'}</p>
+        <h2 class="section-title">May–June 2026</h2>
+        <p>{tr(fluentic, 'growth', lang)}</p>
+      </div>
+    </div>
+  </section>
+  <section class="section-sm">
+    <div class="container">
+      <p class="eyebrow">{lang === 'en' ? 'Current programs' : 'Program saat ini'}</p>
+      <h2 class="section-title">{lang === 'en' ? 'Learning designed for different ages and needs' : 'Pembelajaran untuk beragam usia dan kebutuhan'}</h2>
+      <div class="cards cards-2" style="margin-top:34px;">
+        {programs.map((item) => (
+          <article class="card reveal">
+            <p class="meta">{tr(item, 'format', lang)}</p>
+            <h3 class="card-title">{item.title}</h3>
+            <p><strong>{tr(item, 'audience', lang)}</strong></p>
+            <p>{tr(item, 'description', lang)}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container feature-band reveal">
+      <p class="eyebrow">{lang === 'en' ? 'Partnerships' : 'Kemitraan'}</p>
+      <h2 class="section-title">{tr(fluentic, 'cta', lang)}</h2>
+      <div class="btn-row"><a class="btn" href={routeFor(lang, 'contact')}>{lang === 'en' ? 'Discuss a partnership' : 'Diskusikan kemitraan'}</a><a class="btn" href={`https://wa.me/${site.phone_whatsapp}`} target="_blank" rel="noreferrer">WhatsApp</a></div>
+    </div>
+  </section>
+</BaseLayout>

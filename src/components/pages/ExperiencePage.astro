@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../PageHero.astro';
+import experience from '../../data/experience.json';
+import trainings from '../../data/trainings.json';
+import { tr, type Lang } from '../../lib/i18n';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+---
+<BaseLayout lang={lang} route="experience" title={lang === 'en' ? 'Experience' : 'Pengalaman'} description={lang === 'en' ? 'Professional experience in English education, training, translation, interpreting, and community learning.' : 'Pengalaman profesional dalam pendidikan Bahasa Inggris, pelatihan, penerjemahan, interpretasi, dan pembelajaran komunitas.'}>
+  <PageHero eyebrow={lang === 'en' ? 'Professional journey' : 'Perjalanan profesional'} title={lang === 'en' ? 'Experience shaped across classrooms, training rooms, and communities' : 'Pengalaman yang tumbuh di kelas, ruang pelatihan, dan komunitas'} lead={lang === 'en' ? 'A career that connects university teaching, professional language services, teacher development, and education leadership.' : 'Karier yang menghubungkan pengajaran di perguruan tinggi, layanan bahasa profesional, pengembangan guru, dan kepemimpinan pendidikan.'} />
+  <section class="section">
+    <div class="container split split-wide">
+      <div class="sticky-copy reveal">
+        <p class="eyebrow">{lang === 'en' ? 'Roles and responsibilities' : 'Peran dan tanggung jawab'}</p>
+        <h2 class="section-title">{lang === 'en' ? 'Professional experience' : 'Pengalaman profesional'}</h2>
+      </div>
+      <div class="timeline reveal">
+        {experience.map((item) => (
+          <article class="timeline-item">
+            <div class="timeline-year">{item.year}</div>
+            <div class="timeline-body">
+              <h3>{tr(item, 'title', lang)}</h3>
+              <p class="org">{item.organization}</p>
+              <p>{tr(item, 'summary', lang)}</p>
+              <div class="tags">{item.tags.split(',').map((tag) => <span class="tag">{tag.trim()}</span>)}</div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section-sm">
+    <div class="container">
+      <p class="eyebrow">{lang === 'en' ? 'Continuous learning' : 'Pengembangan berkelanjutan'}</p>
+      <h2 class="section-title">{lang === 'en' ? 'Training and professional development' : 'Pelatihan dan pengembangan profesional'}</h2>
+      <div class="cards cards-2" style="margin-top:34px;">
+        {trainings.map((item) => (
+          <article class="card reveal">
+            <p class="meta">{item.year} · {item.provider}</p>
+            <h3 class="card-title">{item.title}</h3>
+            <p><strong>{tr(item, 'mode', lang)}</strong></p>
+            <p>{tr(item, 'detail', lang)}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

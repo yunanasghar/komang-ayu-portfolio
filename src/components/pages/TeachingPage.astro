@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../PageHero.astro';
+import teaching from '../../data/teaching.json';
+import courses from '../../data/courses.json';
+import methods from '../../data/methods.json';
+import tools from '../../data/tools.json';
+import { tr, type Lang } from '../../lib/i18n';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+---
+<BaseLayout lang={lang} route="teaching" title={lang === 'en' ? 'Teaching' : 'Pengajaran'} description={tr(teaching, 'lead', lang)}>
+  <PageHero eyebrow={lang === 'en' ? 'Teaching philosophy' : 'Filosofi pengajaran'} title={tr(teaching, 'title', lang)} lead={tr(teaching, 'lead', lang)} />
+  <section class="section">
+    <div class="container split split-wide">
+      <div class="sticky-copy reveal">
+        <div class="kicker-line"></div>
+        <h2 class="section-title">{lang === 'en' ? 'Learning grows through use, trust, and meaningful practice.' : 'Belajar tumbuh melalui penggunaan, kepercayaan, dan latihan yang bermakna.'}</h2>
+      </div>
+      <div class="prose reveal"><p>{tr(teaching, 'philosophy', lang)}</p></div>
+    </div>
+  </section>
+  <section class="section-sm">
+    <div class="container">
+      <p class="eyebrow">{lang === 'en' ? 'Courses' : 'Mata kuliah'}</p>
+      <h2 class="section-title">{tr(teaching, 'courses_title', lang)}</h2>
+      <div class="course-grid" style="margin-top:34px;">
+        {courses.map((item) => (
+          <article class="course-card reveal">
+            <small>{tr(item, 'audience', lang)}</small>
+            <h3>{item.title}</h3>
+            <p>{tr(item, 'text', lang)}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">{lang === 'en' ? 'Approach' : 'Pendekatan'}</p>
+      <h2 class="section-title">{tr(teaching, 'methods_title', lang)}</h2>
+      <div class="cards cards-2" style="margin-top:34px;">
+        {methods.map((item, index) => (
+          <article class="card reveal">
+            <span class="icon-number">0{index + 1}</span>
+            <h3 class="card-title">{tr(item, 'title', lang)}</h3>
+            <p>{tr(item, 'text', lang)}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section-sm">
+    <div class="container feature-band reveal">
+      <p class="eyebrow">{lang === 'en' ? 'Digital and collaborative tools' : 'Perangkat digital dan kolaboratif'}</p>
+      <h2 class="section-title">{tr(teaching, 'tools_title', lang)}</h2>
+      <div class="tool-cloud" style="margin-top:28px;">
+        {tools.map((tool) => <span class="tool-pill" style="background:rgba(255,255,255,.1); color:white; border-color:rgba(255,255,255,.2);">{tool.name}</span>)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

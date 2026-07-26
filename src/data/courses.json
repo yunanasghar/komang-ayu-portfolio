@@ -1,0 +1,30 @@
+[
+  {
+    "title": "General English",
+    "audience_en": "Undergraduate and postgraduate students",
+    "audience_id": "Mahasiswa S1 dan S2",
+    "text_en": "Building practical communication skills through integrated listening, speaking, reading, and writing activities.",
+    "text_id": "Membangun kemampuan komunikasi praktis melalui kegiatan listening, speaking, reading, dan writing yang terintegrasi."
+  },
+  {
+    "title": "TOEFL Preparation",
+    "audience_en": "University learners and test candidates",
+    "audience_id": "Mahasiswa dan peserta persiapan tes",
+    "text_en": "Developing test awareness, language accuracy, and strategic practice without losing sight of genuine language understanding.",
+    "text_id": "Mengembangkan pemahaman format tes, ketepatan bahasa, dan strategi latihan tanpa mengabaikan pemahaman bahasa yang sesungguhnya."
+  },
+  {
+    "title": "IELTS Preparation",
+    "audience_en": "Academic and professional learners",
+    "audience_id": "Pembelajar akademik dan profesional",
+    "text_en": "Supporting learners in strengthening productive and receptive skills for international language assessment.",
+    "text_id": "Mendampingi pembelajar memperkuat keterampilan produktif dan reseptif untuk asesmen bahasa internasional."
+  },
+  {
+    "title": "English for Academic Purposes",
+    "audience_en": "Undergraduate and postgraduate students",
+    "audience_id": "Mahasiswa S1 dan S2",
+    "text_en": "Helping students communicate ideas, read academic texts, and participate more confidently in academic settings.",
+    "text_id": "Membantu mahasiswa menyampaikan gagasan, membaca teks akademik, dan berpartisipasi lebih percaya diri dalam lingkungan akademik."
+  }
+]

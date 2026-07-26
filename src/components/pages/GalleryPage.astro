@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../PageHero.astro';
+import gallery from '../../data/gallery.json';
+import videos from '../../data/videos.json';
+import { tr, type Lang } from '../../lib/i18n';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const photos = gallery.filter((item) => item.published);
+const publishedVideos = videos.filter((item) => item.published);
+function youtubeEmbed(url: string) {
+  const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([^?&/]+)/);
+  return match ? `https://www.youtube.com/embed/${match[1]}` : '';
+}
+const videoItems = publishedVideos.map((item) => ({ ...item, embed: youtubeEmbed(item.youtube_url) }));
+---
+<BaseLayout lang={lang} route="gallery" title={lang === 'en' ? 'Gallery' : 'Galeri'} description={lang === 'en' ? 'Photographs and videos with context from teaching, training, academic, and community activities.' : 'Foto dan video berkonteks dari kegiatan pengajaran, pelatihan, akademik, dan komunitas.'}>
+  <PageHero eyebrow={lang === 'en' ? 'Photos and stories' : 'Foto dan cerita'} title={lang === 'en' ? 'Moments that carry a story' : 'Setiap momen membawa cerita'} lead={lang === 'en' ? 'Each photograph is accompanied by its context, so the gallery feels like a record of real work rather than a collection of decoration.' : 'Setiap foto dilengkapi konteks agar galeri terasa sebagai rekam jejak karya nyata, bukan sekadar kumpulan dekorasi.'} />
+  <section class="section">
+    <div class="container media-grid">
+      {photos.map((item) => (
+        <article class="media-card reveal">
+          <figure><img src={item.image} alt={tr(item, 'alt', lang)} loading="lazy" /></figure>
+          <div class="media-card-body">
+            <p class="meta">{item.year} · {item.location} · {tr(item, 'role', lang)}</p>
+            <h2>{tr(item, 'title', lang)}</h2>
+            <p>{tr(item, 'caption', lang)}</p>
+            {item.image.includes('placeholder') || item.image.endsWith('.svg') ? <span class="placeholder-note">{lang === 'en' ? 'Replace this placeholder in the content panel' : 'Ganti placeholder ini melalui panel konten'}</span> : null}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+  <section class="section-sm">
+    <div class="container">
+      <p class="eyebrow">Video</p>
+      <h2 class="section-title">{lang === 'en' ? 'Learning in motion' : 'Pembelajaran dalam gerak'}</h2>
+      {publishedVideos.length ? (
+        <div class="media-grid" style="margin-top:34px;">
+          {videoItems.map((item) => (
+            <article class="media-card reveal">
+              {item.embed ? <iframe class="video-frame" src={item.embed} title={tr(item, 'title', lang)} loading="lazy" allowfullscreen></iframe> : item.video_file ? <video controls poster={item.thumbnail}><source src={item.video_file} /></video> : <figure><img src={item.thumbnail} alt={tr(item, 'title', lang)} /></figure>}
+              <div class="media-card-body"><p class="meta">{item.year} · {item.duration}</p><h3>{tr(item, 'title', lang)}</h3><p>{tr(item, 'caption', lang)}</p></div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div class="empty-state" style="margin-top:30px;">{lang === 'en' ? 'Video entries are prepared but hidden until the original files or YouTube links are added through the content panel.' : 'Entri video sudah disiapkan, tetapi disembunyikan sampai file asli atau tautan YouTube ditambahkan melalui panel konten.'}</div>
+      )}
+    </div>
+  </section>
+</BaseLayout>

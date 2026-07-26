@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../PageHero.astro';
+import contact from '../../data/contact.json';
+import site from '../../data/site.json';
+import { tr, type Lang } from '../../lib/i18n';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const message = lang === 'en' ? 'Hello, I would like to discuss a possible collaboration.' : 'Halo, saya ingin mendiskusikan kemungkinan kolaborasi.';
+---
+<BaseLayout lang={lang} route="contact" title={lang === 'en' ? 'Contact' : 'Kontak'} description={tr(contact, 'lead', lang)}>
+  <PageHero eyebrow={lang === 'en' ? 'Contact and inquiries' : 'Kontak dan pertanyaan'} title={tr(contact, 'title', lang)} lead={tr(contact, 'lead', lang)} />
+  <section class="section">
+    <div class="container contact-grid">
+      <aside class="contact-card reveal">
+        <h2>{lang === 'en' ? 'Professional contact' : 'Kontak profesional'}</h2>
+        <div class="contact-list">
+          <div class="contact-item"><span>Email</span><a href={`mailto:${site.email}`}>{site.email}</a></div>
+          <div class="contact-item"><span>WhatsApp</span><a href={`https://wa.me/${site.phone_whatsapp}?text=${encodeURIComponent(message)}`} target="_blank" rel="noreferrer">{site.phone_display}</a></div>
+          <div class="contact-item"><span>{lang === 'en' ? 'Location' : 'Lokasi'}</span><p>{lang === 'en' ? site.location_en : site.location_id}</p></div>
+          <div class="contact-item"><span>CV</span><a href={site.cv_path} download>{lang === 'en' ? 'Download academic CV' : 'Unduh CV akademik'}</a></div>
+        </div>
+        <p style="color:rgba(255,255,255,.67); margin-top:28px;">{tr(contact, 'response', lang)}</p>
+      </aside>
+      <form class="contact-form reveal" name="professional-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" action={lang === 'en' ? '/thank-you' : '/id/thank-you'}>
+        <input type="hidden" name="form-name" value="professional-inquiry" />
+        <p hidden><label>Do not fill this out: <input name="bot-field" /></label></p>
+        <div class="form-grid">
+          <div class="field"><label for="name">{lang === 'en' ? 'Name' : 'Nama'}</label><input id="name" name="name" required autocomplete="name" /></div>
+          <div class="field"><label for="institution">{lang === 'en' ? 'Institution / organisation' : 'Institusi / organisasi'}</label><input id="institution" name="institution" /></div>
+          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email" /></div>
+          <div class="field"><label for="phone">{lang === 'en' ? 'Phone / WhatsApp' : 'Nomor telepon / WhatsApp'}</label><input id="phone" name="phone" autocomplete="tel" /></div>
+          <div class="field field-full"><label for="interest">{lang === 'en' ? 'Area of interest' : 'Bidang yang diminati'}</label><select id="interest" name="interest"><option>English Language Training</option><option>Teacher Training</option><option>Community Empowerment</option><option>Translation / Interpreting</option><option>Academic Collaboration</option><option>Other</option></select></div>
+          <div class="field field-full"><label for="message">{lang === 'en' ? 'Tell us briefly about the idea' : 'Ceritakan singkat mengenai gagasannya'}</label><textarea id="message" name="message" required></textarea></div>
+        </div>
+        <button class="btn btn-primary" type="submit" style="margin-top:22px;">{lang === 'en' ? 'Send inquiry' : 'Kirim pertanyaan'}</button>
+        <p class="form-note">{lang === 'en' ? 'This form works automatically after deployment to Netlify with form detection enabled.' : 'Formulir ini akan berfungsi otomatis setelah website dipasang di Netlify dan deteksi formulir diaktifkan.'}</p>
+      </form>
+    </div>
+  </section>
+</BaseLayout>

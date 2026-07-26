@@ -1,0 +1,68 @@
+---
+import site from '../data/site.json';
+import { alternateRoute, labels, routeFor, type Lang } from '../lib/i18n';
+
+interface Props {
+  lang: Lang;
+  route?: string;
+}
+
+const { lang, route = '' } = Astro.props;
+const l = labels[lang];
+const nav = [
+  ['about', l.about],
+  ['teaching', l.teaching],
+  ['experience', l.experience],
+  ['works', l.works],
+  ['fluentic', l.fluentic],
+  ['gallery', l.gallery],
+  ['collaboration', l.collaboration]
+] as const;
+---
+<header class="site-header" data-header>
+  <div class="container header-inner">
+    <a class="brand" href={routeFor(lang)} aria-label={`${site.short_name} — ${l.home}`}>
+      <span class="brand-mark">KA</span>
+      <span class="brand-copy">
+        <strong>{site.short_name}</strong>
+        <span>{lang === 'en' ? 'English Lecturer & Educator' : 'Dosen Bahasa Inggris & Pendidik'}</span>
+      </span>
+    </a>
+
+    <nav class="desktop-nav" aria-label={lang === 'en' ? 'Primary navigation' : 'Navigasi utama'}>
+      {nav.map(([slug, label]) => (
+        <a href={routeFor(lang, slug)} aria-current={route === slug ? 'page' : undefined}>{label}</a>
+      ))}
+    </nav>
+
+    <div class="header-actions">
+      <a class="lang-link" href={alternateRoute(lang, route)}>{l.language}</a>
+      <a class="btn btn-primary btn-small" href={routeFor(lang, 'contact')}>{l.contact}</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>{l.menu}</button>
+    </div>
+  </div>
+
+  <nav class="mobile-panel" id="mobile-menu" aria-label={lang === 'en' ? 'Mobile navigation' : 'Navigasi seluler'} data-mobile-menu>
+    <a href={routeFor(lang)} aria-current={route === '' ? 'page' : undefined}>{l.home}</a>
+    {nav.map(([slug, label]) => (
+      <a href={routeFor(lang, slug)} aria-current={route === slug ? 'page' : undefined}>{label}</a>
+    ))}
+    <a href={routeFor(lang, 'contact')} aria-current={route === 'contact' ? 'page' : undefined}>{l.contact}</a>
+  </nav>
+</header>
+
+<script>
+  const header = document.querySelector('[data-header]');
+  const toggle = document.querySelector('[data-menu-toggle]');
+  const menu = document.querySelector('[data-mobile-menu]');
+
+  const onScroll = () => header?.classList.toggle('scrolled', window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    menu?.classList.toggle('open', !open);
+  });
+</script>
