@@ -1,0 +1,340 @@
+media:
+  input: public/media
+  output: /media
+  rename: safe
+  categories: [image, video]
+
+content:
+  - name: identity
+    label: Identity & Contact
+    type: file
+    path: src/data/site.json
+    format: json
+    fields:
+      - { name: name, label: Full name, type: string, required: true }
+      - { name: short_name, label: Short name, type: string, required: true }
+      - { name: role_en, label: Professional role — English, type: string, required: true }
+      - { name: role_id, label: Professional role — Indonesian, type: string, required: true }
+      - { name: email, label: Email, type: string, required: true }
+      - { name: phone_display, label: Phone display, type: string, required: true }
+      - { name: phone_whatsapp, label: WhatsApp number with country code, type: string, required: true }
+      - { name: location_en, label: Location — English, type: string }
+      - { name: location_id, label: Location — Indonesian, type: string }
+      - { name: profile_image, label: Main portrait, type: image, required: true }
+      - { name: cv_path, label: CV download path, type: string }
+      - { name: instagram_personal, label: Instagram personal, type: string }
+      - { name: instagram_fluentic, label: Instagram Fluentic, type: string }
+      - { name: linkedin, label: LinkedIn, type: string }
+      - { name: google_scholar, label: Google Scholar, type: string }
+      - { name: sinta, label: SINTA, type: string }
+      - { name: orcid, label: ORCID, type: string }
+      - { name: youtube, label: YouTube, type: string }
+
+  - name: homepage
+    label: Homepage Text
+    type: file
+    path: src/data/home.json
+    format: json
+    fields:
+      - { name: eyebrow_en, label: Eyebrow — English, type: string }
+      - { name: eyebrow_id, label: Eyebrow — Indonesian, type: string }
+      - { name: headline_en, label: Main headline — English, type: text }
+      - { name: headline_id, label: Main headline — Indonesian, type: text }
+      - { name: intro_en, label: Hero introduction — English, type: text }
+      - { name: intro_id, label: Hero introduction — Indonesian, type: text }
+      - { name: quote_en, label: Personal quote — English, type: text }
+      - { name: quote_id, label: Personal quote — Indonesian, type: text }
+      - { name: section_title_en, label: Story title — English, type: text }
+      - { name: section_title_id, label: Story title — Indonesian, type: text }
+      - { name: section_text_en, label: Story paragraph — English, type: text }
+      - { name: section_text_id, label: Story paragraph — Indonesian, type: text }
+      - { name: achievement_title_en, label: Achievement title — English, type: text }
+      - { name: achievement_title_id, label: Achievement title — Indonesian, type: text }
+      - { name: achievement_text_en, label: Achievement paragraph — English, type: text }
+      - { name: achievement_text_id, label: Achievement paragraph — Indonesian, type: text }
+      - { name: fluentic_title_en, label: Fluentic title — English, type: text }
+      - { name: fluentic_title_id, label: Fluentic title — Indonesian, type: text }
+      - { name: fluentic_text_en, label: Fluentic paragraph — English, type: text }
+      - { name: fluentic_text_id, label: Fluentic paragraph — Indonesian, type: text }
+
+  - name: gallery
+    label: Photo Gallery
+    type: file
+    path: src/data/gallery.json
+    format: json
+    list: true
+    fields:
+      - { name: title_en, label: Title — English, type: string, required: true }
+      - { name: title_id, label: Title — Indonesian, type: string, required: true }
+      - { name: year, label: Date or year, type: string }
+      - { name: location, label: Location, type: string }
+      - { name: role_en, label: Role — English, type: string }
+      - { name: role_id, label: Role — Indonesian, type: string }
+      - { name: caption_en, label: Caption — English, type: text }
+      - { name: caption_id, label: Caption — Indonesian, type: text }
+      - { name: alt_en, label: Image description — English, type: text }
+      - { name: alt_id, label: Image description — Indonesian, type: text }
+      - { name: image, label: Photo, type: image, required: true }
+      - { name: featured, label: Show on homepage, type: boolean, default: false }
+      - { name: published, label: Publish, type: boolean, default: true }
+
+  - name: videos
+    label: Videos
+    type: file
+    path: src/data/videos.json
+    format: json
+    list: true
+    fields:
+      - { name: title_en, label: Title — English, type: string, required: true }
+      - { name: title_id, label: Title — Indonesian, type: string, required: true }
+      - { name: year, label: Date or year, type: string }
+      - { name: duration, label: Duration, type: string }
+      - { name: caption_en, label: Caption — English, type: text }
+      - { name: caption_id, label: Caption — Indonesian, type: text }
+      - { name: thumbnail, label: Thumbnail, type: image }
+      - { name: youtube_url, label: YouTube URL, type: string }
+      - { name: video_file, label: Uploaded video, type: file }
+      - { name: published, label: Publish, type: boolean, default: false }
+
+  - name: experience
+    label: Professional Experience
+    type: file
+    path: src/data/experience.json
+    format: json
+    list: true
+    fields:
+      - { name: year, label: Period, type: string, required: true }
+      - { name: title_en, label: Position — English, type: string, required: true }
+      - { name: title_id, label: Position — Indonesian, type: string, required: true }
+      - { name: organization, label: Organisation, type: string, required: true }
+      - { name: summary_en, label: Description — English, type: text }
+      - { name: summary_id, label: Description — Indonesian, type: text }
+      - { name: tags, label: Tags separated by commas, type: string }
+
+  - name: trainings
+    label: Training & Development
+    type: file
+    path: src/data/trainings.json
+    format: json
+    list: true
+    fields:
+      - { name: year, label: Date, type: string, required: true }
+      - { name: title, label: Program title, type: string, required: true }
+      - { name: provider, label: Provider, type: string, required: true }
+      - { name: mode_en, label: Format / role — English, type: string }
+      - { name: mode_id, label: Format / role — Indonesian, type: string }
+      - { name: detail_en, label: Description — English, type: text }
+      - { name: detail_id, label: Description — Indonesian, type: text }
+
+  - name: works
+    label: Books, Research & Works
+    type: file
+    path: src/data/works.json
+    format: json
+    list: true
+    fields:
+      - { name: type_en, label: Type — English, type: string, required: true }
+      - { name: type_id, label: Type — Indonesian, type: string, required: true }
+      - { name: title, label: Title, type: string, required: true }
+      - { name: year, label: Year, type: string }
+      - { name: description_en, label: Description — English, type: text }
+      - { name: description_id, label: Description — Indonesian, type: text }
+      - { name: image, label: Cover / image, type: image }
+      - { name: link, label: Link, type: string }
+      - { name: featured, label: Featured, type: boolean, default: false }
+
+  - name: stats
+    label: Homepage Statistics
+    type: file
+    path: src/data/stats.json
+    format: json
+    list: true
+    fields:
+      - { name: value, label: Value, type: string, required: true }
+      - { name: label_en, label: Label — English, type: text }
+      - { name: label_id, label: Label — Indonesian, type: text }
+
+  - name: fluentic_programs
+    label: Fluentic Programs
+    type: file
+    path: src/data/programs.json
+    format: json
+    list: true
+    fields:
+      - { name: title, label: Program name, type: string, required: true }
+      - { name: audience_en, label: Audience — English, type: string }
+      - { name: audience_id, label: Audience — Indonesian, type: string }
+      - { name: format_en, label: Format — English, type: string }
+      - { name: format_id, label: Format — Indonesian, type: string }
+      - { name: description_en, label: Description — English, type: text }
+      - { name: description_id, label: Description — Indonesian, type: text }
+
+  - name: services
+    label: Collaboration Services
+    type: file
+    path: src/data/services.json
+    format: json
+    list: true
+    fields:
+      - { name: title_en, label: Service — English, type: string, required: true }
+      - { name: title_id, label: Service — Indonesian, type: string, required: true }
+      - { name: text_en, label: Description — English, type: text }
+      - { name: text_id, label: Description — Indonesian, type: text }
+
+  - name: about_text
+    label: About Page Text
+    type: file
+    path: src/data/about.json
+    format: json
+    fields:
+      - { name: title_en, label: Page title — English, type: text }
+      - { name: title_id, label: Page title — Indonesian, type: text }
+      - { name: lead_en, label: Introduction — English, type: text }
+      - { name: lead_id, label: Introduction — Indonesian, type: text }
+      - { name: story_1_en, label: Story paragraph 1 — English, type: text }
+      - { name: story_1_id, label: Story paragraph 1 — Indonesian, type: text }
+      - { name: story_2_en, label: Story paragraph 2 — English, type: text }
+      - { name: story_2_id, label: Story paragraph 2 — Indonesian, type: text }
+      - { name: story_3_en, label: Story paragraph 3 — English, type: text }
+      - { name: story_3_id, label: Story paragraph 3 — Indonesian, type: text }
+      - { name: mcgill_title_en, label: McGill title — English, type: text }
+      - { name: mcgill_title_id, label: McGill title — Indonesian, type: text }
+      - { name: mcgill_text_en, label: McGill story — English, type: text }
+      - { name: mcgill_text_id, label: McGill story — Indonesian, type: text }
+      - { name: values_title_en, label: Values heading — English, type: text }
+      - { name: values_title_id, label: Values heading — Indonesian, type: text }
+
+  - name: teaching_text
+    label: Teaching Page Text
+    type: file
+    path: src/data/teaching.json
+    format: json
+    fields:
+      - { name: title_en, label: Page title — English, type: text }
+      - { name: title_id, label: Page title — Indonesian, type: text }
+      - { name: lead_en, label: Introduction — English, type: text }
+      - { name: lead_id, label: Introduction — Indonesian, type: text }
+      - { name: philosophy_en, label: Teaching philosophy — English, type: text }
+      - { name: philosophy_id, label: Teaching philosophy — Indonesian, type: text }
+      - { name: courses_title_en, label: Courses heading — English, type: string }
+      - { name: courses_title_id, label: Courses heading — Indonesian, type: string }
+      - { name: methods_title_en, label: Methods heading — English, type: string }
+      - { name: methods_title_id, label: Methods heading — Indonesian, type: string }
+      - { name: tools_title_en, label: Tools heading — English, type: string }
+      - { name: tools_title_id, label: Tools heading — Indonesian, type: string }
+
+  - name: fluentic_text
+    label: Fluentic Page Text
+    type: file
+    path: src/data/fluentic.json
+    format: json
+    fields:
+      - { name: title_en, label: Page title — English, type: text }
+      - { name: title_id, label: Page title — Indonesian, type: text }
+      - { name: lead_en, label: Introduction — English, type: text }
+      - { name: lead_id, label: Introduction — Indonesian, type: text }
+      - { name: origin_en, label: Community origin — English, type: text }
+      - { name: origin_id, label: Community origin — Indonesian, type: text }
+      - { name: growth_en, label: Training center growth — English, type: text }
+      - { name: growth_id, label: Training center growth — Indonesian, type: text }
+      - { name: cta_en, label: Partnership statement — English, type: text }
+      - { name: cta_id, label: Partnership statement — Indonesian, type: text }
+
+  - name: collaboration_text
+    label: Collaboration Page Text
+    type: file
+    path: src/data/collaboration.json
+    format: json
+    fields:
+      - { name: title_en, label: Page title — English, type: text }
+      - { name: title_id, label: Page title — Indonesian, type: text }
+      - { name: lead_en, label: Introduction — English, type: text }
+      - { name: lead_id, label: Introduction — Indonesian, type: text }
+      - { name: closing_en, label: Closing statement — English, type: text }
+      - { name: closing_id, label: Closing statement — Indonesian, type: text }
+
+  - name: contact_text
+    label: Contact Page Text
+    type: file
+    path: src/data/contact.json
+    format: json
+    fields:
+      - { name: title_en, label: Page title — English, type: text }
+      - { name: title_id, label: Page title — Indonesian, type: text }
+      - { name: lead_en, label: Introduction — English, type: text }
+      - { name: lead_id, label: Introduction — Indonesian, type: text }
+      - { name: response_en, label: Response note — English, type: text }
+      - { name: response_id, label: Response note — Indonesian, type: text }
+
+  - name: education
+    label: Education
+    type: file
+    path: src/data/education.json
+    format: json
+    list: true
+    fields:
+      - { name: year, label: Period, type: string, required: true }
+      - { name: degree_en, label: Degree — English, type: string, required: true }
+      - { name: degree_id, label: Degree — Indonesian, type: string, required: true }
+      - { name: institution, label: Institution, type: string, required: true }
+      - { name: detail_en, label: Description — English, type: text }
+      - { name: detail_id, label: Description — Indonesian, type: text }
+
+  - name: teaching_courses
+    label: Teaching Courses
+    type: file
+    path: src/data/courses.json
+    format: json
+    list: true
+    fields:
+      - { name: title, label: Course title, type: string, required: true }
+      - { name: audience_en, label: Audience — English, type: string }
+      - { name: audience_id, label: Audience — Indonesian, type: string }
+      - { name: text_en, label: Description — English, type: text }
+      - { name: text_id, label: Description — Indonesian, type: text }
+
+  - name: teaching_methods
+    label: Teaching Methods
+    type: file
+    path: src/data/methods.json
+    format: json
+    list: true
+    fields:
+      - { name: title_en, label: Method — English, type: string, required: true }
+      - { name: title_id, label: Method — Indonesian, type: string, required: true }
+      - { name: text_en, label: Description — English, type: text }
+      - { name: text_id, label: Description — Indonesian, type: text }
+
+  - name: teaching_tools
+    label: Teaching Tools
+    type: file
+    path: src/data/tools.json
+    format: json
+    list: true
+    fields:
+      - { name: name, label: Tool name, type: string, required: true }
+
+  - name: working_values
+    label: Working Values
+    type: file
+    path: src/data/values.json
+    format: json
+    list: true
+    fields:
+      - { name: title_en, label: Value — English, type: string, required: true }
+      - { name: title_id, label: Value — Indonesian, type: string, required: true }
+      - { name: text_en, label: Description — English, type: text }
+      - { name: text_id, label: Description — Indonesian, type: text }
+
+  - name: works_page_text
+    label: Works Page Text
+    type: file
+    path: src/data/works_intro.json
+    format: json
+    fields:
+      - { name: title_en, label: Page title — English, type: text }
+      - { name: title_id, label: Page title — Indonesian, type: text }
+      - { name: lead_en, label: Introduction — English, type: text }
+      - { name: lead_id, label: Introduction — Indonesian, type: text }
+      - { name: note_en, label: Editorial note — English, type: text }
+      - { name: note_id, label: Editorial note — Indonesian, type: text }
