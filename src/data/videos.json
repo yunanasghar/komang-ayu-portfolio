@@ -6,10 +6,10 @@
     "duration": "00:00",
     "caption_en": "Add a short classroom video here to show the learning atmosphere, interaction, and activities.",
     "caption_id": "Tambahkan video kelas singkat di sini untuk menunjukkan suasana belajar, interaksi, dan kegiatan peserta.",
-    "thumbnail": "/media/video-fluentic.svg",
+    "thumbnail": "/media/video-fluentic-thumbnail.mp4",
     "youtube_url": "",
-    "video_file": "",
-    "published": false
+    "video_file": "/media/video-fluentic-thumbnail.mp4",
+    "published": true
   },
   {
     "title_en": "A message from Komang Ayu",
@@ -18,9 +18,9 @@
     "duration": "00:00",
     "caption_en": "A personal introduction video can help visitors understand her teaching values and collaboration interests.",
     "caption_id": "Video perkenalan personal dapat membantu pengunjung memahami nilai pengajaran dan minat kolaborasi beliau.",
-    "thumbnail": "/media/video-intro.svg",
+    "thumbnail": "/media/video-fluentic-thumbnail.mp4",
     "youtube_url": "",
-    "video_file": "",
-    "published": false
+    "video_file": "/media/video-fluentic-thumbnail.mp4",
+    "published": true
   }
 ]
